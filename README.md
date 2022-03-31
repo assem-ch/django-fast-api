@@ -103,4 +103,4 @@ Quick start
 Issues and  Feedback
 ====================
 
-If you found an issue or you have a feedback , don't hesitate to point to it.
+If you found an issue or you have a feedback , don't hesitate to point to it  as a github issue. 
