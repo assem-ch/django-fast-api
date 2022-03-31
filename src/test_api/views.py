@@ -10,7 +10,7 @@ def sample_view(req):
 
 
 @router.api('sample/success')
-def sample_view():
+def sample_view(req):
     return {
         'key_name': 'value'
     }
@@ -27,9 +27,10 @@ def error_view():
 
 @router.api('country/create')
 def create_company(req: serializers.CreateCountryRequest) -> serializers.CountryResponse:
-    return models.Country.objects.create(**req)
+    assert req.user, "not authentified"
+    return models.Country.objects.create(**req.args)
 
 
 @router.api('country/get')
 def create_company(req: serializers.GetCountryRequest) -> serializers.CountryResponse:
-    return models.Country.objects.get(id=req.id)
+    return models.Country.objects.get(id=req.args.id)

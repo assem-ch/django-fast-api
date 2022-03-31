@@ -90,13 +90,16 @@ Quick start
             fields = ['name']
             
     @router.api('country/create')
-    def create_company(req: CreateCountryRequest) -> CountryResponse:
-        return models.Country.objects.create(**req)
-        
+    def create_company(req: serializers.CreateCountryRequest) -> serializers.CountryResponse:
+        return models.Country.objects.create(**req.args)
+    
+    
     @router.api('country/get')
-    def create_company(req: GetCountryRequest) -> CountryResponse:
-        return models.Country.objects.get(id=req.id)   
-  
+    def create_company(req: serializers.GetCountryRequest) -> serializers.CountryResponse:
+        return models.Country.objects.get(id=req.args.id)
+
+* req is a django request
+* you will find all endpoint args in req.args
 
 Issues and  Feedback
 ====================

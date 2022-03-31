@@ -174,21 +174,14 @@ class APIRouter:
                     if "req" in decorated_args:
                         if req_serializer and "file" not in req_serializer().fields:
                             serializer_data = req_serializer(data=data)
-                            print(data)
-
                             serializer_data.is_valid(raise_exception=True)
                             data = serializer_data.data
-                            print(data)
 
-                        args["req"] = Prodict(data)
 
-                    if "request" in decorated_args:
-                        args["request"] = request
 
-                assert not decorated_args - {
-                    "req",
-                    "request",
-                }, f'there are unused variables in {decorated}, use only `req` and `request`, not:{decorated_args - {"req", "request"}}'
+                        request.args = Prodict(data)
+                        args['req'] = request
+
                 raw_data = func(**args)
 
                 if res_serializer:
