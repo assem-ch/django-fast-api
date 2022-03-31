@@ -22,32 +22,34 @@ Quick start
 
 1. Install the lib::
 
-     pip install django-fast-api
+     `$ pip install django-fast-api`
 
 1. Add "drf_spectacular" to your ``INSTALLED_APPS`` setting like this::
-
+```python
     INSTALLED_APPS = [
         ...
          "drf_spectacular",
         ...
     ]
-
+```
 2. Include the swagger documentation  in your project ``urls.py`` like this::
-
+```python
     from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
     path('api-schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api-doc/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
-
+```
 3. Add open api schema class and  exception handler to "REST_FRAMEWORK" settings::
+```python
 
     REST_FRAMEWORK = {
         'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
         'EXCEPTION_HANDLER': 'fast_api.error_handling.exception_handler'
     }
 
-
+```
 4. Examples of usage in views::
+```python
 
     from fast_api.decorators import APIRouter
 
@@ -95,8 +97,9 @@ Quick start
     
     
     @router.api('country/get')
-    def create_company(req: serializers.GetCountryRequest) -> serializers.CountryResponse:
-        return models.Country.objects.get(id=req.args.id)
+    def create_company(req: GetCountryRequest) -> CountryResponse:
+        return models.Country.objects.get(id=req.args.id)   
+ ```
 
 * req is a django request
 * you will find all endpoint args in req.args
@@ -104,4 +107,4 @@ Quick start
 Issues and  Feedback
 ====================
 
-If you found an issue or you have a feedback , don't hesitate to point to it. I'll be happy to fix them. 
+If you found an issue or you have a feedback , don't hesitate to point to it  as a github issue. 
