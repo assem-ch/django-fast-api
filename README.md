@@ -83,7 +83,7 @@ Quick start
             fields = ['name']
     
     
-    class GetResponse(serializers.Serializer):
+    class GetCountryRequest(serializers.Serializer):
         id = serializers.IntegerField()
     
     class CountryResponse(serializers.ModelSerializer):
