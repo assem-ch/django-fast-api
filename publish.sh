@@ -10,4 +10,4 @@ python -m pip install --upgrade twine setuptools wheel
 # Create new build
 python setup.py sdist
 # Upload new build to pypi using twine
-python -m twine upload dist/*
+python -m twine upload --verbose dist/*
