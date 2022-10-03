@@ -57,7 +57,7 @@ Quick start
     from . import serializers, models
 
     @router.api('public/health_check')
-    def sample_view(req):
+    def health_check(req):
         return "ok"
 
     @router.api('sample')
