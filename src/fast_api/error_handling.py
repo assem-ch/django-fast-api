@@ -49,6 +49,7 @@ def exception_handler(exc, context):
         err_data = {
             "error": "Unknown error"
         }
+        logging.error(exc)
         report_exception(exc, "error")
         response = JsonResponse(err_data, safe=True, status=500)
 
