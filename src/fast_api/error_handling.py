@@ -1,10 +1,13 @@
 import logging
+import os
 import traceback
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import IntegrityError
 from django.http import JsonResponse
 
+
+DEBUG = os.getenv('DEBUG', 0)
 
 def report_exception(exc, level="warning"):
     # TODO add sentry settings
@@ -49,7 +52,10 @@ def exception_handler(exc, context):
         err_data = {
             "error": "Unknown error"
         }
+        if DEBUG:
+            err_data['tb'] = tb
         logging.error(exc)
+        logging.error(tb)
         report_exception(exc, "error")
         response = JsonResponse(err_data, safe=True, status=500)
 
